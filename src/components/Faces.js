@@ -7,16 +7,18 @@ import straps from './data/straps'
 import cases from './data/cases'
 import faces from './data/faces'
 
-const Watch = () => {
+const Watch = ({ selectedCase, selectedStrap, setCurrentFaceHandler }) => {
     const settings = {
         dots: true,
         infinite: true,
         centerMode: true,
+        initialSlide: 0,
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
         swipeToSlide: true,
         centerPadding: 0,
+        afterChange: (index) => setCurrentFaceHandler(index),
         responsive: [
             {
                 breakpoint: 1024,
@@ -50,7 +52,7 @@ const Watch = () => {
                         >
                             <img
                                 className="js-img -loaded"
-                                src={straps[0]}
+                                src={straps[selectedStrap]}
                                 alt=""
                                 decoding="async"
                                 loading="lazy"
@@ -63,7 +65,7 @@ const Watch = () => {
                         <div className="o-Img c-Watch_Item -cases">
                             <img
                                 className="js-img -loaded"
-                                src={cases[0]}
+                                src={cases[selectedCase]}
                                 alt="calibre e4 42 mm"
                                 loading="lazy"
                                 decoding="async"

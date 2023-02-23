@@ -7,7 +7,7 @@ import straps from "./data/straps";
 import cases from "./data/cases";
 import faces from "./data/faces";
 
-const Watch = () => {
+const Watch = ({ setCurrentCaseHandler }) => {
 
     const settings = {
         dots: true,
@@ -17,22 +17,19 @@ const Watch = () => {
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
-
+        afterChange: (index) => setCurrentCaseHandler(index),
         swipeToSlide: true,
-
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
                     slidesToShow: 3,
-                    dots: true,
                 },
             },
             {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1,
                 },
             },
         ],
