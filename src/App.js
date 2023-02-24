@@ -7,51 +7,69 @@ import Faces from './components/Faces'
 import faces from './components/data/faces'
 
 function App() {
-  const [currentSlide, setCurrentSlide] = useState(1);
-  const [selectedStrap, setSelectedStrap] = useState(0);
-  const [selectedFace, setSelectedFace] = useState(0);
-  const [selectedCase, setSelectedCase] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(1)
+  const [selectedStrap, setSelectedStrap] = useState(0)
+  const [selectedFace, setSelectedFace] = useState(0)
+  const [selectedCase, setSelectedCase] = useState(0)
 
   const increaseCurrentSlideHandler = (e) => {
-    e.preventDefault();
-    setCurrentSlide(prev => prev + 1);
+    e.preventDefault()
+    setCurrentSlide((prev) => prev + 1)
   }
 
   const setCurrentCaseHandler = (index) => {
-    setSelectedCase(index);
+    setSelectedCase(index)
   }
 
   const setCurrentStrapHandler = (index) => {
-    setSelectedStrap(index);
+    setSelectedStrap(index)
   }
 
   const setCurrentFaceHandler = (index) => {
-    setSelectedFace(index);
+    setSelectedFace(index)
   }
 
-  console.log(faces[selectedFace]);
+  const setCurrentSlideHandler = (index) => {
+    setCurrentSlide(index);
+  }
 
-  // console.log(currentSlide)
+  console.log(currentSlide)
 
   return (
     <div className="App">
       {currentSlide === 1 ? (
         <Watch setCurrentCaseHandler={setCurrentCaseHandler} />
       ) : currentSlide === 2 ? (
-        <Strap selectedCase={selectedCase} setCurrentStrapHandler={setCurrentStrapHandler} />
+        <Strap
+          selectedCase={selectedCase}
+          setCurrentStrapHandler={setCurrentStrapHandler}
+        />
       ) : currentSlide === 3 ? (
-        <Faces selectedCase={selectedCase} selectedStrap={selectedStrap} setCurrentFaceHandler={setCurrentFaceHandler} />
-      ) : <img src={faces[selectedFace]} alt="img" />}
-
-      <button onClick={increaseCurrentSlideHandler} style={{ marginTop: '90px' }}>{currentSlide === 1 ? "Choose this model" : currentSlide === 2 ? "Chosse this strap" : currentSlide === 3 ? "Buy watch" : "Congo"}</button>
-      {/* 
-      {currentSlide === 1 ? (
-        <button onClick={increaseCurrentSlideHandler} style={{ marginTop: '90px' }}>Choose this model</button>
-      ) : currentSlide === 2 ? (
-        <button>Choose this strap</button>
+        <Faces
+          selectedCase={selectedCase}
+          selectedStrap={selectedStrap}
+          setCurrentFaceHandler={setCurrentFaceHandler}
+        />
       ) : (
-        <button>Buy watch</button>
-      )} */}
+        <img src={faces[selectedFace]} alt="img" />
+      )}
+
+      <button
+        onClick={increaseCurrentSlideHandler}
+        style={{ marginTop: '90px' }}
+      >
+        {currentSlide === 1
+          ? 'Choose this model'
+          : currentSlide === 2
+            ? 'Chosse this strap'
+            : currentSlide === 3
+              ? 'Buy watch'
+              : 'Congo'}
+      </button>
+      <br />
+      {Array.from({ length: 4 }, (_, index) => (
+        <button onClick={() => setCurrentSlideHandler(index + 1)} key={index}>Element {index + 1}</button>
+      ))}
     </div>
   )
 }

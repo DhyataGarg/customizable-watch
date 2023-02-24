@@ -100,47 +100,47 @@
 
 /* *************************************************** */
 
-.watch-container {
-  width: 100vw;
-}
+/* .watch-container {
+  width: 95vw;
+} */
 
 .slick-slide > div {
   margin: 0 50px;
 }
 
-.fixed-obj {
+/* .fixed-obj {
   position: relative;
-}
+} */
 
-.slider-up {
+/* .slider-up {
   position: relative;
   top: 0px;
   left: 0px;
-}
+} */
 
 #floating,
 #parent {
-  margin: auto;
+  /* margin: auto; */
   width: 100%;
 }
 
-.slick-slider-float {
+/* .slick-slider-float {
   z-index: 1;
-}
+} */
 
 #parent {
   position: absolute;
 }
 
-.fixed-obj {
+/* .fixed-obj {
   position: absolute;
   width: 100%;
-}
+} */
 
-#floating .-cases {
+/* #floating .-cases {
   position: absolute !important;
   z-index: 200 !important;
-}
+} */
 /* 
 #parent {
   position: absolute;
@@ -152,6 +152,6 @@
   width: 100%;
 } */
 
-.slick-list {
+/* .slick-list {
   box-sizing: border-box;
-}
+} */

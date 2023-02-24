@@ -35,13 +35,13 @@ const Watch = ({ selectedCase, setCurrentStrapHandler }) => {
     }
 
     return (
-        <div>
+        <div style={{ position: 'relative' }}>
 
-            <div id="parent">
-                <Slider {...settings} infinite="true" className="slick-slider-parent">
+            <div className='watch-container' id="parent">
+                <Slider {...settings} infinite="true" className="slick-slider-parent" >
                     {straps.map((strap, index) => (
                         <div
-                            className="c-Watch c-Watch--42 u-relative u-flex u-items-center"
+                            className="c-Watch  u-relative u-flex u-items-center"
                             id="slider_cases_0"
                             key={index}
                         >
@@ -73,34 +73,38 @@ const Watch = ({ selectedCase, setCurrentStrapHandler }) => {
             >
                 <Slider {...settings} infinite={false}>
                     <div
-                        className="c-Watch c-Watch--42 u-relative u-flex u-items-center"
+                        className="c-Watch u-relative u-flex u-items-center"
                         id="slider_cases_0"
                     >
-
-                        <span className="c-Watch_WFBg u-absolute"></span>
-                        <div className="o-Img c-Watch_Item -cases">
-                            <img
-                                className="js-img -loaded"
-                                src={cases[selectedCase]}
-                                alt="calibre e4 42 mm"
-                                loading="lazy"
-                                decoding="async"
-                                draggable="false"
-                                data-load="loaded"
-                            />
-                            <div
-                                className="o-Img c-Watch_Item -watchfaces -s42 -fakes js-fake-wf"
-                                aria-hidden="true"
-                            >
+                        <div
+                            className="o-Img c-Watch_Item -straps -fakes js-fake-s"
+                            aria-hidden="true"
+                        >
+                            <span className="c-Watch_WFBg u-absolute"></span>
+                            <div className="o-Img c-Watch_Item -cases">
                                 <img
                                     className="js-img -loaded"
-                                    src={faces[selectedCase]}
-                                    alt=""
+                                    src={cases[selectedCase]}
+                                    alt="calibre e4 42 mm"
                                     loading="lazy"
                                     decoding="async"
                                     draggable="false"
                                     data-load="loaded"
                                 />
+                                <div
+                                    className="o-Img c-Watch_Item -watchfaces -s42 -fakes js-fake-wf"
+                                    aria-hidden="true"
+                                >
+                                    <img
+                                        className="js-img -loaded"
+                                        src={faces[selectedCase]}
+                                        alt=""
+                                        loading="lazy"
+                                        decoding="async"
+                                        draggable="false"
+                                        data-load="loaded"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
