@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-// import Slick from "./components/Slick"
 import Watch from './components/Watch'
 import Strap from './components/Strap'
 import Faces from './components/Faces'
@@ -11,44 +10,33 @@ function App() {
   const [selectedStrap, setSelectedStrap] = useState(0)
   const [selectedFace, setSelectedFace] = useState(0)
   const [selectedCase, setSelectedCase] = useState(0)
+  const [currentMargin, setSelectedMargin] = useState('5%');
 
   const increaseCurrentSlideHandler = (e) => {
     e.preventDefault()
     setCurrentSlide((prev) => prev + 1)
   }
 
-  const setCurrentCaseHandler = (index) => {
-    setSelectedCase(index)
-  }
-
-  const setCurrentStrapHandler = (index) => {
-    setSelectedStrap(index)
-  }
-
-  const setCurrentFaceHandler = (index) => {
-    setSelectedFace(index)
-  }
-
-  const setCurrentSlideHandler = (index) => {
-    setCurrentSlide(index);
-  }
-
-  console.log(currentSlide)
+  // console.log(currentMargin);
 
   return (
     <div className="App">
       {currentSlide === 1 ? (
-        <Watch setCurrentCaseHandler={setCurrentCaseHandler} />
+        <Watch setCurrentCaseHandler={setSelectedCase} currentMargin={currentMargin} setSelectedMarginHandle={setSelectedMargin} />
       ) : currentSlide === 2 ? (
         <Strap
           selectedCase={selectedCase}
-          setCurrentStrapHandler={setCurrentStrapHandler}
+          setCurrentStrapHandler={setSelectedStrap}
+          currentMargin={currentMargin}
+          setSelectedMarginHandle={setSelectedMargin}
         />
       ) : currentSlide === 3 ? (
         <Faces
           selectedCase={selectedCase}
           selectedStrap={selectedStrap}
-          setCurrentFaceHandler={setCurrentFaceHandler}
+          currentMargin={currentMargin}
+          setSelectedMarginHandle={setSelectedMargin}
+          setCurrentFaceHandler={setSelectedFace}
         />
       ) : (
         <img src={faces[selectedFace]} alt="img" />
@@ -68,7 +56,7 @@ function App() {
       </button>
       <br />
       {Array.from({ length: 4 }, (_, index) => (
-        <button onClick={() => setCurrentSlideHandler(index + 1)} key={index}>Element {index + 1}</button>
+        <button onClick={() => setCurrentSlide(index + 1)} key={index}>Element {index + 1}</button>
       ))}
     </div>
   )

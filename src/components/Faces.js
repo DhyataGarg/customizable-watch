@@ -7,14 +7,19 @@ import straps from './data/straps'
 import cases from './data/cases'
 import faces from './data/faces'
 
-const Watch = ({ selectedCase, selectedStrap, setCurrentFaceHandler }) => {
+const Watch = ({ selectedCase, selectedStrap, setCurrentFaceHandler, currentMargin, setSelectedMarginHandle }) => {
+
+    setTimeout(() => {
+        setSelectedMarginHandle('15%')
+    }, 1000)
+
     const settings = {
         dots: true,
         infinite: true,
         centerMode: true,
         initialSlide: 0,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 3,
         slidesToScroll: 1,
         swipeToSlide: true,
         centerPadding: 0,
@@ -39,12 +44,11 @@ const Watch = ({ selectedCase, selectedStrap, setCurrentFaceHandler }) => {
 
 
     return (
-        <div style={{ position: 'relative' }}>
-            <div className="watch-container" id="parent">
+        <div style={{ position: 'relative' }} className="face-slider">
+            <div id="parent">
                 <Slider {...settings} infinite={false}>
                     <div
                         className="c-Watch c-Watch--42 u-relative u-flex u-items-center"
-                        id="slider_cases_0"
                     >
                         <div
                             className="o-Img c-Watch_Item -straps -fakes js-fake-s"
@@ -77,12 +81,11 @@ const Watch = ({ selectedCase, selectedStrap, setCurrentFaceHandler }) => {
                 </Slider>
             </div>
 
-            <div id="floating">
-                <Slider {...settings} className="slick-slider-float">
+            <div id='floating'>
+                <Slider {...settings}>
                     {faces.map((x, index) => (
                         <div
                             className="c-Watch c-Watch--42 u-relative u-flex u-items-center"
-                            id="slider_cases_0"
                             key={index}
                         >
                             <div

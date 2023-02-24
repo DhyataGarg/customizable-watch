@@ -82,11 +82,11 @@
   backface-visibility: hidden;
 }
 
-.c-Watch_Item.-cases.-s42,
+/* .c-Watch_Item.-cases.-s42,
 .c-Watch_Item.-watchfaces.-s42 {
   backface-visibility: hidden;
   transform: scale(0.915) translateZ(0.01px);
-}
+} */
 .c-Watch_Item.-watchfaces {
   aspect-ratio: 696/500;
   z-index: 4;
@@ -100,58 +100,55 @@
 
 /* *************************************************** */
 
-/* .watch-container {
-  width: 95vw;
-} */
-
-.slick-slide > div {
-  margin: 0 50px;
+#watch-slider .slick-slide > div {
+  margin: 0 var(--my-variable);
+  animation-name: watch-case;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
-/* .fixed-obj {
-  position: relative;
-} */
+.strap-slider .slick-slide > div {
+  margin: 0 var(--my-variable);
+  animation-name: watch-strap;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
 
-/* .slider-up {
-  position: relative;
-  top: 0px;
-  left: 0px;
-} */
+.face-slider .slick-slide > div {
+  margin: 0 var(--my-variable);
+  /* margin: 0 10%; */
+  animation-name: watch-face;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes watch-case {
+  100% {
+    margin: 0 5%;
+  }
+}
+
+@keyframes watch-strap {
+  100% {
+    margin: 0 10%;
+  }
+}
+
+@keyframes watch-face {
+  100% {
+    margin: 0 15%;
+  }
+}
 
 #floating,
 #parent {
-  /* margin: auto; */
   width: 100%;
 }
-
-/* .slick-slider-float {
-  z-index: 1;
-} */
 
 #parent {
   position: absolute;
 }
 
-/* .fixed-obj {
-  position: absolute;
-  width: 100%;
-} */
-
-/* #floating .-cases {
-  position: absolute !important;
-  z-index: 200 !important;
-} */
-/* 
-#parent {
-  position: absolute;
-  top: 0px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  width: 100%;
-} */
-
-/* .slick-list {
-  box-sizing: border-box;
-} */
+:root {
+  --my-variable: 5%;
+}
