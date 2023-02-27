@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -6,24 +6,53 @@ import './Slick.css'
 import straps from './data/straps'
 import cases from './data/cases'
 import faces from './data/faces'
+import ColorThief from 'colorthief'
 
-const Watch = ({ selectedCase, setCurrentStrapHandler, currentMargin, setSelectedMarginHandle }) => {
-    document.documentElement.style.setProperty('--my-variable', currentMargin);
+const Watch = ({
+    selectedCase,
+    setCurrentStrapHandler,
+    currentMargin,
+    setSelectedMarginHandle,
+    setIsStrapSelected,
+    selectedStrap,
+    selectedFace,
+}) => {
+    document.documentElement.style.setProperty('--my-variable', currentMargin)
 
     setTimeout(() => {
         setSelectedMarginHandle('10%')
     }, 1000)
 
+    var colorThief = new ColorThief()
+
+    var image = document.getElementById('strap-img')
+
+    function handleImageLoad(index) {
+        image = document.getElementsByClassName('strap-img')[index]
+
+
+        const color = colorThief.getColor(image)
+        document.getElementsByClassName('strap-slider')[0].style.backgroundColor =
+            'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')'
+    }
+
+    useEffect(() => {
+        image = document.getElementsByClassName('strap-img')[selectedStrap]
+        image.onload = () => handleImageLoad(selectedStrap);
+        setIsStrapSelected(true)
+    }, [])
+
     const settings = {
         dots: true,
-        infinite: true,
+        infinite: false,
         centerMode: true,
-        initialSlide: 0,
+        initialSlide: selectedStrap,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
         swipeToSlide: true,
-        afterChange: (index) => setCurrentStrapHandler(index),
+
+        appendDots: (dots) => <div className="thumbnail">{dots}</div>,
         responsive: [
             {
                 breakpoint: 1024,
@@ -40,10 +69,18 @@ const Watch = ({ selectedCase, setCurrentStrapHandler, currentMargin, setSelecte
         ],
     }
 
+    const settings1 =
+    {
+        afterChange: (index) => {
+            handleImageLoad(index)
+            setCurrentStrapHandler(index)
+        },
+    }
+
     return (
         <div style={{ position: 'relative' }} className="strap-slider">
             <div id="parent">
-                <Slider {...settings} infinite="true">
+                <Slider {...settings} {...settings1}>
                     {straps.map((strap, index) => (
                         <div
                             className="c-Watch u-relative u-flex u-items-center"
@@ -55,7 +92,7 @@ const Watch = ({ selectedCase, setCurrentStrapHandler, currentMargin, setSelecte
                             >
                                 <img
                                     key={index}
-                                    className="js-img -loaded"
+                                    className="js-img -loaded strap-img"
                                     src={strap}
                                     alt=""
                                     decoding="async"
@@ -90,7 +127,7 @@ const Watch = ({ selectedCase, setCurrentStrapHandler, currentMargin, setSelecte
                             >
                                 <img
                                     className="js-img -loaded"
-                                    src={faces[selectedCase]}
+                                    src={faces[selectedFace]}
                                     alt=""
                                     loading="lazy"
                                     decoding="async"

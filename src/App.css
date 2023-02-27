@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+
+/*  ******************************************************** */
+
+.bottom-nav {
+  border: 1px solid grey;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-nav div {
+  border: 1px solid grey;
+  position: relative;
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-nav div p {
+  width: 100%;
+  color: grey;
+}
+
+.bottom-nav div:before {
+  background-color: #fff;
+  content: '';
+  height: 0.1rem;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: -0.1rem;
+  width: 100%;
+  z-index: 1;
+}
+
+.bottom-nav div[aria-selected='true']:before {
+  opacity: 1;
+}
+
+.bottom-nav div[aria-selected='true'] p {
+  color: black;
+}
